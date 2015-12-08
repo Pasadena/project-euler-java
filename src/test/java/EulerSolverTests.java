@@ -24,6 +24,20 @@ public class EulerSolverTests {
     public void naturalNumbersDivisibleByThreeAndSevenUnderThousandSumsTo233168() {
         EulerSolver eulerSolver = new EulerSolver();
         Integer result = eulerSolver.getTotalSumFromDivisableElements(1000, 5, 3);
-        assertEquals("Sum of elements that are under 1000 and divisable by 3 or 5 is X", Integer.valueOf(233168), result);
+        assertEquals("Sum of elements that are under 1000 and divisable by 3 or 5 is 233168", Integer.valueOf(233168), result);
+    }
+
+    @Test
+    public void evenFibonacciNumbersWithTresholdOfTenSumsToTen() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Integer result = eulerSolver.getTotalSumForEvenFibonacciNumbers(10);
+        assertEquals("Sum of even fibonacci number under 10 is ", Integer.valueOf(10), result);
+    }
+
+    @Test
+    public void evenFibonacciNumbersWithTresholdOfFourMillionSumsTo4613732() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Integer result = eulerSolver.getTotalSumForEvenFibonacciNumbers(4000000);
+        assertEquals("Sum of even fibonacci number under 4000000 is ", Integer.valueOf(4613732), result);
     }
 }

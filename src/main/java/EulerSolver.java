@@ -1,4 +1,5 @@
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -22,5 +23,24 @@ public class EulerSolver {
                 .filter(divisableNumber -> Stream.of(divisors).anyMatch(divisor -> divisableNumber % divisor == 0))
                 .mapToInt(i -> i)
                 .sum();
+    }
+
+    /**
+     * Problem number 2 on projecteuler.net:
+     * By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
+     * @param largestFibonacciNumberAllowed
+     * @return the sum of even fibonacci numbers in series which maximum number is largestFibonacciNumberAllowed
+     */
+    public Integer getTotalSumForEvenFibonacciNumbers(int largestFibonacciNumberAllowed) {
+        if (largestFibonacciNumberAllowed < 0) throw new IllegalArgumentException("Series' maximum allowed value must be positive value");
+        List<Long> fiboValues = new ArrayList<>();
+        Stream.iterate(
+            new long[]{1, 1},
+            f -> new long[]{f[1], f[0] + f[1]}
+        ).mapToLong(ele -> ele[0]).peek(fibValue -> { if(fibValue <= largestFibonacciNumberAllowed) fiboValues.add(fibValue); }).allMatch(fibValue -> fibValue <= largestFibonacciNumberAllowed);
+        return fiboValues.stream()
+                .filter(ele -> ele % 2 == 0)
+                .mapToInt(i -> Long.valueOf(i).intValue()).sum();
+
     }
 }
