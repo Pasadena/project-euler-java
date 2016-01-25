@@ -40,4 +40,18 @@ public class EulerSolverTests {
         Integer result = eulerSolver.getTotalSumForEvenFibonacciNumbers(4000000);
         assertEquals("Sum of even fibonacci number under 4000000 is ", Integer.valueOf(4613732), result);
     }
+
+    @Test
+    public void largestPrimeForNumber13195Is29() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Long result = eulerSolver.getLargestPrime(13195);
+        assertEquals("The largest prime for number 13195 is ", Long.valueOf(29L), result);
+    }
+
+    @Test
+    public void largestPrimeForNumber600851475143s6857() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Long result = eulerSolver.getLargestPrime(600851475143L);
+        assertEquals("The largest prime for number 13195 is ", Long.valueOf(6857L), result);
+    }
 }

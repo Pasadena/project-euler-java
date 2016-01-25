@@ -1,5 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
+import sun.java2d.Disposer;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -42,5 +45,33 @@ public class EulerSolver {
                 .filter(ele -> ele % 2 == 0)
                 .mapToInt(i -> Long.valueOf(i).intValue()).sum();
 
+    }
+
+    /**
+     * Problem number 3 on projecteuler.net:
+     * What is the largest prime factor of the given number
+     * @param valueToDivide
+     * @return largest prime for given number, or -1, if there is no suitable number
+     */
+    public Long getLargestPrime(long valueToDivide) {
+        if (valueToDivide < 1) throw new IllegalArgumentException("Prime numbers are greater than 1");
+
+        long squareRootOfValue = (long)Math.ceil(Math.sqrt(valueToDivide)) +1;
+        List<Long> primes = new ArrayList<>();
+        for(long i = 2; i <= squareRootOfValue; i++) {
+            if(valueToDivide % i == 0) {
+                primes.add(i);
+            }
+        }
+
+        for(Long prime: primes) {
+            while(valueToDivide % prime == 0 && valueToDivide != 1) {
+                valueToDivide = valueToDivide / prime;
+            }
+            if(valueToDivide == 1) {
+                return prime;
+            }
+        }
+        return -1L;
     }
 }
