@@ -1,8 +1,6 @@
-import sun.java2d.Disposer;
-
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -73,5 +71,46 @@ public class EulerSolver {
             }
         }
         return -1L;
+    }
+
+    /**
+     * A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+     * Find the largest palindrome made from the product of two 3-digit numbers.
+     * @return
+     */
+    public Integer getLargestNDigitPalindrome(int digitCount) {
+        if(digitCount < 1) throw new IllegalArgumentException("Value must have at least one digit (in order to be a value))");
+        char[] maxNDigitValueArray = new char[digitCount];
+        Arrays.fill(maxNDigitValueArray, '9');
+        int largestNDigitValue = createMaxValueWithNDigits(digitCount);
+        int smallestNDigitValue = createMinValueWithNDigits(digitCount);
+        List<Integer> palindromes = new ArrayList<>();
+        for(int i = largestNDigitValue; i >= smallestNDigitValue; i--) {
+            for(int j = largestNDigitValue; j >= smallestNDigitValue; j--) {
+                int possiblePalindrome = i * j;
+                if(isNumberPalindrome(possiblePalindrome)) {
+                    palindromes.add(possiblePalindrome);
+                }
+            }
+        }
+        return palindromes.stream().mapToInt(i -> i).max().orElse(-1);
+    }
+
+    private int createMaxValueWithNDigits(int digitCount) {
+        char[] maxNDigitValueArray = new char[digitCount];
+        Arrays.fill(maxNDigitValueArray, '9');
+        return Integer.valueOf(new String(maxNDigitValueArray));
+    }
+
+    private int createMinValueWithNDigits(int digitCount) {
+        char[] minNDigitValueArray = new char[digitCount];
+        Arrays.fill(minNDigitValueArray, '0');
+        minNDigitValueArray[0] = '1';
+        return Integer.valueOf(new String(minNDigitValueArray));
+    }
+
+    private boolean isNumberPalindrome(int number) {
+        String numberAsString = String.valueOf(number);
+        return numberAsString.equals(new StringBuilder(numberAsString).reverse().toString());
     }
 }

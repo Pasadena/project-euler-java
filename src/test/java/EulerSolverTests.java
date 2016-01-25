@@ -52,6 +52,20 @@ public class EulerSolverTests {
     public void largestPrimeForNumber600851475143s6857() {
         EulerSolver eulerSolver = new EulerSolver();
         Long result = eulerSolver.getLargestPrime(600851475143L);
-        assertEquals("The largest prime for number 13195 is ", Long.valueOf(6857L), result);
+        assertEquals("The largest prime for number 600851475143 is ", Long.valueOf(6857L), result);
+    }
+
+    @Test
+    public void largestPalindromeMadeFromTwoNumbersWithLengthOfTwoIs9009() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Integer result = eulerSolver.getLargestNDigitPalindrome(2);
+        assertEquals("The largest palindrome made from the product of two 2-digit numbers is 9009 ", Integer.valueOf(9009), result);
+    }
+
+    @Test
+    public void largestPalindromeMadeFromTwoNumbersWithLengthOfThreeIs906609() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Integer result = eulerSolver.getLargestNDigitPalindrome(3);
+        assertEquals("The largest palindrome made from the product of two 3-digit numbers is 906609 ", Integer.valueOf(906609), result);
     }
 }
