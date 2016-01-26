@@ -68,4 +68,18 @@ public class EulerSolverTests {
         Integer result = eulerSolver.getLargestNDigitPalindrome(3);
         assertEquals("The largest palindrome made from the product of two 3-digit numbers is 906609 ", Integer.valueOf(906609), result);
     }
+
+    @Test
+    public void smallestDivisableNumberWithValuesFromOneToTenIs2520() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Integer result = eulerSolver.getSmallestNumberDivisibleByNumbersOneToN(10);
+        assertEquals("The smallest number divisable with values from 1 to 10 without remainder is 2520 ", Integer.valueOf(2520), result);
+    }
+
+    @Test
+    public void smallestDivisableNumberWithValuesFromOneToTwentyIs232792560() {
+        EulerSolver eulerSolver = new EulerSolver();
+        Integer result = eulerSolver.getSmallestNumberDivisibleByNumbersOneToN(20);
+        assertEquals("The smallest number divisable with values from 1 to 20 without remainder is 232792560 ", Integer.valueOf(232792560), result);
+    }
 }

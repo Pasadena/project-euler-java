@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -74,7 +76,7 @@ public class EulerSolver {
     }
 
     /**
-     * A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+     * A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 ï¿½ 99.
      * Find the largest palindrome made from the product of two 3-digit numbers.
      * @return
      */
@@ -112,5 +114,26 @@ public class EulerSolver {
     private boolean isNumberPalindrome(int number) {
         String numberAsString = String.valueOf(number);
         return numberAsString.equals(new StringBuilder(numberAsString).reverse().toString());
+    }
+
+    /**
+     * 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+     * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+     * @param largestDivisor
+     * @return smallest divisable number
+     * TODO: This is brute force answer, refactor it.
+     */
+    public Integer getSmallestNumberDivisibleByNumbersOneToN(int largestDivisor) {
+        if(largestDivisor < 1) throw new IllegalArgumentException("Largest divisor must be at least 1");
+        List<Integer> divisors = IntStream.range(1, largestDivisor + 1).boxed().collect(Collectors.toList());
+        int divisableNumber = largestDivisor;
+        while(divisableNumber != -1) {
+            final int currentValue = divisableNumber;
+            if(divisors.stream().allMatch(item -> currentValue % item == 0)) {
+                return divisableNumber;
+            }
+            divisableNumber++;
+        }
+        return -1;
     }
 }
